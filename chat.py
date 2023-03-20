@@ -69,7 +69,7 @@ please give me only json without any other characters.
 def feedback_request():
     feedback_schema = """
 
-totol_score: A score from 0 to 100 on the overall conversation.
+total_score: A score from 0 to 100 on the overall conversation.
 humor_score: A number from 0 to 100 about how funny the answer was.
 appropriateness_score: A number from 0 to 100 on how appropriate the words you chose were
 empathy_score: "A number from 0 to 100 on how empathetic I was in this conversation.",

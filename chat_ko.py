@@ -65,7 +65,7 @@ def following_prompt(opponent, answer):
 def feedback_request():
     feedback_schema = """
 
-totol_score: 전체 대화에 대한 0~100점 사이의 점수입니다.
+total_score: 전체 대화에 대한 0~100점 사이의 점수입니다.
 humor_score: 나의 답변이 얼마나 웃겼는지에 대한 0~100 사이의 수치입니다.
 appropriateness_score: 선택한 단어가 얼마나 적절했는지에 대한 0~100 사이의 점수입니다.
 politeness_score: "이 대화에서 내가 얼마나 공손했는지에 대한 0에서 100까지의 숫자.",
