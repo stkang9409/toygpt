@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json
@@ -7,6 +8,7 @@ import chat as chat
 
 app = Flask(__name__)
 CORS(app)
+
 
 @app.route("/", methods=["GET"])
 def index():
@@ -65,4 +67,5 @@ def evaluate_conversation_route():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port)
