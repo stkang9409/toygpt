@@ -52,7 +52,7 @@ def following_prompt(opponent, answer):
 {opponent['name']}이 어떻게 반응하는지 알려주세요.
 반응은 {{opponent['name']}}의 성격을 충분히 반영해야 합니다.
 
-{opponent['name']}의 반응은 line 필드에 입력해야 합니다.
+나의 말에 대한 {opponent['name']}의 응답은 line 필드에 입력해야 합니다.
 
 응답 스키마는 아래와 같은 JSON이어야 합니다.
 {customer_schema}
