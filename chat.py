@@ -1,6 +1,4 @@
-import json
 import random
-import requests
 
 import my_ai
 import repo
@@ -17,6 +15,7 @@ name: "opponent's name it should not be changed. it is must required",
 character: "What kind of personality does opponent have? it is must required",
 angry_score: "number(0~100) on how angry is this person right now?"
 """
+
 
 def generate_situation_prompt(topic=None, count=5):
     if topic is None:
@@ -60,6 +59,7 @@ response schema should be json like below
 please give me only json without any other characters.
 """
 
+
 def feedback_request():
     feedback_schema = """
 
@@ -92,21 +92,21 @@ feedback and suggestions should be very detailed.
 """
 
 
-def get_initial_opponent(precondition, lang='ko'):
-    if lang == 'ko':
+def get_initial_opponent(precondition, lang="ko"):
+    if lang == "ko":
         prompt = ko.first_prompt(precondition)
-    else:   
+    else:
         prompt = first_prompt(precondition)
-        
+
     opponent = repo.get_opponent(lang)
     return prompt, opponent
 
 
-def response_to_customer(opponent, answer, history, retry=0, lang='ko'):
+def response_to_customer(opponent, answer, history, retry=0, lang="ko"):
     if retry > 3:
         raise Exception("failed to get valid opponent")
 
-    if lang == 'ko':
+    if lang == "ko":
         input_prompt = ko.following_prompt(opponent, answer)
     else:
         input_prompt = following_prompt(opponent, answer)
@@ -114,15 +114,15 @@ def response_to_customer(opponent, answer, history, retry=0, lang='ko'):
     return input_prompt, my_ai.require_json(following_prompt(opponent, answer), history)
 
 
-def evaluate_conversation(history, lang='ko'):
-    if lang == 'ko':
+def evaluate_conversation(history, lang="ko"):
+    if lang == "ko":
         return my_ai.require_json(ko.feedback_request(), history)
 
     return my_ai.require_json(feedback_request(), history)
 
 
-def get_situation(topic=None, lang='ko'):
-    if lang == 'ko':
+def get_situation(topic=None, lang="ko"):
+    if lang == "ko":
         prompt = ko.generate_situation_prompt(topic)
     else:
         prompt = generate_situation_prompt(topic)
