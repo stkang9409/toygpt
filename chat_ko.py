@@ -6,7 +6,7 @@ import my_ai
 
 customer_schema = """
 name: "상대방의 이름은 변경해서는 안됩니다.",
-line: "내가 무언가를 말할 때 상대의 반응.",
+line: "상대방의 대답",
 angry_score: "이 사람이 지금 얼마나 화가 났는지에 대한 숫자(0~100)?"
 """
 

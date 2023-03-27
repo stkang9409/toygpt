@@ -36,6 +36,7 @@ def init_opponent_route():
     prompt, opponent = chat.get_initial_opponent(situation, lang=lang)
     return jsonify({"opponent": opponent, "prompt": prompt})
 
+
 @app.route("/response_to_customer", methods=["POST"])
 def response_to_customer_route():
     data = request.get_json()

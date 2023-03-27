@@ -1,0 +1,17 @@
+[{
+ name: Todo
+ responsibility: Manage todo items
+ interfaces: [{
+  name: CreateTodo
+  responsibility: Create a new todo item
+ }, ...]
+ entities: [{
+  name: TodoItem
+  responsibility: A todo item
+  schema: 
+   id: UUID
+   title: String
+   description: String
+   completed: Boolean
+ }, ...]
+}, ...]
