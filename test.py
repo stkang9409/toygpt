@@ -10,4 +10,4 @@ if __name__ == "__main__":
             "start_date": "2023-04-24 08:00:00"
         })
         print(result.status_code)
-        # print(result.json())
+        print(result.json())

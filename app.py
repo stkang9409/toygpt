@@ -78,14 +78,15 @@ def attendance_route():
     start_date = body.get("start_date")
     start_date = datetime.strptime(start_date, "%Y-%m-%d %H:%M:%S")
     messages = conversations.preprocess(_conversations)
-    return {
-        "csv": utils.출석체크_엑셀(
-            messages,
-            required_report_num(
-                start_date, datetime.now()
-                ), start_date
-            )
-        }
+
+    text = utils.출석체크_엑셀(
+        messages,
+        required_report_num(
+            start_date, datetime.now()
+            ), start_date
+    )
+    # response content type must be 'text/csv'
+    return text
 
 
 if __name__ == "__main__":

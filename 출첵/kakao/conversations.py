@@ -102,5 +102,12 @@ def preprocess(text):
                 "text": text
             })
         else:
+            if not messages:
+                messages.append({
+                    "date": datetime.now(),
+                    "name": "시스템",
+                    "text": ""
+                })
             messages[-1]["text"] += "\n" + line
+            
     return messages
