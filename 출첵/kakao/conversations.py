@@ -58,7 +58,7 @@ def preprocess_csv(csv_file):
 
 def preprocess(text):
     messages = []
-    for i, line in enumerate(text.readlines()):
+    for i, line in enumerate(text.split("\n")):
         if not line:
             continue
         line = line.strip()
