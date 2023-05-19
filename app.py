@@ -86,7 +86,7 @@ def attendance_route():
             ), start_date
     )
     # response content type must be 'text/csv'
-    return text
+    return jsonify({"csv": text})
 
 
 if __name__ == "__main__":
