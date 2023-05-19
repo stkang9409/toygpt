@@ -6,7 +6,7 @@ from flask_cors import CORS
 import logging
 import chat as chat
 
-from 출첵.kakao import utils
+from 출첵.kakao import utils, conversations
 from 출첵.domains.일지 import required_report_num
 
 
@@ -74,10 +74,10 @@ def evaluate_conversation_route():
 @app.route("/attendance", methods=["POST"])
 def attendance_route():
     body = request.get_json()
-    conversations = body.get("conversations")
+    _conversations = body.get("conversations")
     start_date = body.get("start_date")
-
-    messages = conversations.preprocess(conversations)
+    start_date = datetime.strptime(start_date, "%Y-%m-%d %H:%M:%S")
+    messages = conversations.preprocess(_conversations)
     return {
         "csv": utils.출석체크_엑셀(
             messages,

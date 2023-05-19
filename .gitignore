@@ -1,4 +1,5 @@
 .env
 venv
+conversations
 
 __pycache__
