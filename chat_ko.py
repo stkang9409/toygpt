@@ -1,9 +1,3 @@
-import json
-import random
-import requests
-
-import my_ai
-
 customer_schema = """
 name: "상대방의 이름은 변경해서는 안됩니다.",
 line: "상대방의 대답",

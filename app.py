@@ -1,10 +1,14 @@
 import os
+from datetime import datetime
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import json
-import random
 import logging
 import chat as chat
+
+from 출첵.kakao import utils
+from 출첵.domains.일지 import required_report_num
+
 
 app = Flask(__name__)
 CORS(app)
@@ -65,6 +69,23 @@ def evaluate_conversation_route():
 
     feedback = chat.evaluate_conversation(history, lang=lang)
     return jsonify(feedback)
+
+
+@app.route("attendance", methods=["POST"])
+def attendance_route():
+    body = request.get_json()
+    conversations = body.get("conversations")
+    start_date = body.get("start_date")
+
+    messages = conversations.preprocess(conversations)
+    return {
+        "csv": utils.출석체크_엑셀(
+            messages,
+            required_report_num(
+                start_date, datetime.now()
+                ), start_date
+            )
+        }
 
 
 if __name__ == "__main__":
