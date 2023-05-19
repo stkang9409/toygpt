@@ -1,7 +1,7 @@
 import re
 from datetime import datetime
 
-from domains.일지 import required_report_num
+from 출첵.domains.일지 import required_report_num
 
 def get_mentioned_count(messages):
     name_count = {}

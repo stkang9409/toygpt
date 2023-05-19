@@ -71,7 +71,7 @@ def evaluate_conversation_route():
     return jsonify(feedback)
 
 
-@app.route("attendance", methods=["POST"])
+@app.route("/attendance", methods=["POST"])
 def attendance_route():
     body = request.get_json()
     conversations = body.get("conversations")
