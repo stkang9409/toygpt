@@ -134,18 +134,23 @@ def 출석체크_엑셀(messages, required_num, start_date=None, limit=None):
                 people_attend[person].append("결석")
 
     if limit is not None:
-        result = ["이름, 출석, 지각, 결석," + ", ".join([f"{i}일차" for i in range(1, required_num + 1)][-limit:])]
+        result = ["이름, 출석, 지각, 리마인드," + ", ".join([f"{i}일차" for i in range(1, required_num + 1)][-limit:])]
     else:
-        result = ["이름, 출석, 지각, 결석, " + ", ".join([f"{i}일차" for i in range(1, required_num + 1)])]
+        result = ["이름, 출석, 지각, 리마인드, " + ", ".join([f"{i}일차" for i in range(1, required_num + 1)])]
 
     for name, attend in people_attend.items():
         count_출석 = f"{attend.count('출석')}"
         count_지각 = f"{attend.count('지각')}"
-        count_결석 = f"{attend.count('결석')}"
-        if limit is not None:
-            result.append(", ".join([name, count_출석, count_지각, count_결석] + attend[-limit:]))
+        # 마지막 두개가 결석이면 리마인드 필요, 전체 attend가 하나일 떄는 결석이 하나라도 있으면 리마인드 필요
+        if len(attend) == 1:
+            has_need_remind = "O" if attend.count("결석") >= 1 else "X"
         else:
-            result.append(", ".join([name, count_출석, count_지각, count_결석] + attend))
+            has_need_remind = "O" if attend[-2:].count("결석") == 2 else "X"
+
+        if limit is not None:
+            result.append(", ".join([name, count_출석, count_지각, has_need_remind] + attend[-limit:]))
+        else:
+            result.append(", ".join([name, count_출석, count_지각, has_need_remind] + attend))
     
     return "\n".join(result)
 
