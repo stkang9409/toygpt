@@ -1,4 +1,5 @@
 import re
+import sys
 from datetime import datetime
 
 from 출첵.domains.일지 import required_report_num
@@ -112,12 +113,8 @@ def count_reports_submitted(messages):
     return count_dict
 
 
-def 출석체크_엑셀(messages, required_num, start_date=None, limit=None):
-    if start_date is None:
-        start_date = datetime(2020, 4, 20)
-
+def 출석체크_엑셀(messages, required_num, start_date, limit=None):
     people = get_invited_people(messages)
-    print(people)
     count_dict = count_reports_in_dict(messages, start_date)
     people_attend = {name: [] for name in people}
 
@@ -141,6 +138,7 @@ def 출석체크_엑셀(messages, required_num, start_date=None, limit=None):
     for name, attend in people_attend.items():
         count_출석 = f"{attend.count('출석')}"
         count_지각 = f"{attend.count('지각')}"
+
         # 마지막 두개가 결석이면 리마인드 필요, 전체 attend가 하나일 떄는 결석이 하나라도 있으면 리마인드 필요
         if len(attend) == 1:
             has_need_remind = "O" if attend.count("결석") >= 1 else "X"

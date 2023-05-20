@@ -121,9 +121,6 @@ def main():
             "value_type": "string",
         }
     ], context)
-    print(result)
-    # response = new_model.run_with_fine_model("davinci:ft-personal-2023-03-27-12-48-34", prompt)
-    # print(response)
 
 
 if __name__ == "__main__":

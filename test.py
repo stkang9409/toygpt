@@ -1,6 +1,6 @@
 import requests
 
-url = " http://util.keysams.com:5000/attendance"
+url = " http://localhost:5000/attendance"
 
 if __name__ == "__main__":
     with open("./conversations/대화.txt") as f:
