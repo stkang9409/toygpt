@@ -89,7 +89,18 @@ def attendance_route():
     # response content type must be 'text/csv'
     return jsonify({"csv": text})
 
+@app.route("/reports", methods=["POST"])
+def reports_route():
+    body = request.get_json()
+    person = body.get("person")
+    _conversations = body.get("conversations")
+
+    messages = conversations.preprocess(_conversations)
+    txt = utils.get_reports_of(person, messages)
+    return jsonify({"txt": txt})
+
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", "5000"))
-    app.run(host="0.0.0.0", port=port)
+    is_prod = os.environ.get("IS_PROD", None)
+    app.run(host="0.0.0.0", port=port, debug=not is_prod)
